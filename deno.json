@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "types": [
+      "lume/types.ts"
+    ]
+  },
+  "fmt": {
+    "exclude": [
+      "./_site"
+    ],
+    "proseWrap": "preserve"
+  },
+  "imports": {
+    "lume/": "https://deno.land/x/lume@v2.0.3/"
+  },
+  "lock": false,
+  "pkgx": "deno.land^1.39.0",
+  "tasks": {
+    "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
+    "build": "deno task lume",
+    "serve": "deno task lume -s"
+  }
+}

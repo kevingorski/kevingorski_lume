@@ -1,0 +1,14 @@
+---
+layout: layouts/base.vto
+bodyClass: body-tag
+---
+<div data-pagefind-body>
+  <h1>Tagged “{{ tag }}”</h1>
+
+  {{ set postslist = search.pages("'" + tag + "'") }}
+  {{ include "templates/postslist.vto" }}
+
+  <hr>
+
+  <p>See <a href="/tags/">all tags</a>.</p>
+</div>
