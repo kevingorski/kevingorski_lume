@@ -1,7 +1,7 @@
 ---
 layout: layouts/post.vto
 menu:
-  visible: true
+  visible: false
   order: 2
 title: About Me
 templateClass: tmpl-post

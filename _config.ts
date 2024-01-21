@@ -8,17 +8,32 @@ import resolveUrls from "lume/plugins/resolve_urls.ts";
 import pageFind from "lume/plugins/pagefind.ts";
 import sitemap from "lume/plugins/sitemap.ts";
 import feed from "lume/plugins/feed.ts";
+import toc from "lume_markdown_plugins/toc.ts";
+
+const markdown = {
+  options: {
+    typographer: true,
+  },
+};
 
 const site = lume({
   location: new URL("https://kevingorski.com/"),
+}, {
+  markdown,
 });
 
 site
   .ignore("README.md")
-  .copy("img")
+  .copy("img", ".")
   .use(postcss())
   .use(date())
   .use(codeHighlight())
+  .use(toc({
+    slugify: {
+      separator: "_",
+      lowercase: true,
+    },
+  }))
   .use(basePath())
   .use(sitemap())
   .use(pageFind({
@@ -41,6 +56,14 @@ site
     },
   }))
   .use(resolveUrls())
+
+site.process([".html"], (pages) => {
+  for (const page of pages) {
+    page.document?.querySelectorAll("a[href^='http']").forEach((a) => {
+      a.setAttribute("target", "_blank");
+    });
+  }
+});
   
 export default site;
 

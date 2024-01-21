@@ -43,3 +43,9 @@
     padding: 1em;
   }
 }
+blockquote {
+  border-left: 2px solid var(--lightgray);
+  font-style: italic;
+  margin-left: -2rem;
+  padding-left: 2rem;
+}

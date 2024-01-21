@@ -3,7 +3,7 @@ layout: layouts/base.vto
 bodyClass: body-post
 ---
 <article class="post" data-pagefind-body>
-  <div class="post-header">
+  <header class="post-header">
     <h1 class="post-title">{{ title }}</h1>
 
     <nav class="post-tags">
@@ -15,7 +15,29 @@ bodyClass: body-post
     <time class="post-date" datetime="{{ date |> date('DATETIME') }}">
       {{ date |> date('HUMAN_DATE') }}
     </time>
-  </div>
+
+    {{ if toc && toc.length > 1 }}
+    <nav class="toc">
+      <ol>
+        {{ for item of toc }}
+        <li>
+          <a href="#{{ item.slug }}">{{ item.text }}</a>
+  
+          {{ if item.children.length }}
+          <ul>
+            {{ for child of item.children }}
+            <li>
+              <a href="#{{ child.slug }}">{{ child.text }}</a>
+            </li>
+            {{ /for }}
+          </ul>
+          {{ /if }}
+        </li>
+        {{ /for }}
+      </ol>
+    </nav>
+    {{ /if }}
+  </header>
 
   <div class="post-body">
     {{ content |> safe }}
