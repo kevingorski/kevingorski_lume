@@ -1,5 +1,6 @@
 import Server from "lume/core/server.ts";
 import expires from "lume/middlewares/expires.ts";
+import www from "lume/middlewares/www.ts";
 import notFound from "lume/middlewares/not_found.ts";
 
 const server = new Server({
@@ -7,6 +8,9 @@ const server = new Server({
   root: `${Deno.cwd()}/_site`,
 });
 
+server.use(www({
+  add: false, // false to remove, true to add it.
+}))
 server.use(expires());
 server.use(notFound({
   root: `${Deno.cwd()}/_site`,
@@ -14,5 +18,3 @@ server.use(notFound({
 }));
 
 server.start();
-
-console.log("Listening on http://localhost:8000");
