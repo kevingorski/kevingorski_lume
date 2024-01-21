@@ -22,7 +22,7 @@ jobs:
 
       - name: Build site
         run: |
-          deno task build --location=https://kevingorski-lume.deno.dev
+          deno task build --location=https://kevingorski.com
 
       - name: Deploy to Deno Deploy
         uses: denoland/deployctl@v1
