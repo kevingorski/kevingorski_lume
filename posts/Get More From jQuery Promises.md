@@ -3,6 +3,7 @@ title: Get More From jQuery Promises
 description: Intro to and tips for using jQuery Promises
 date: 2013-01-05T19:00:00.000Z
 tags: 
+  - Building Software
   - JavaScript
 ---
 

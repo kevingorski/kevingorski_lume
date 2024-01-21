@@ -3,6 +3,7 @@ title: Software Decay
 description: Why bits aren't forever, at least not in every way you'd like
 date: 2013-08-11T17:00:00.000Z
 tags:
+  - Building Software
 ---
 
 Every time you play a song from your digital source of choice the bits representing that song are the same as they were on release day, but those bits also represent a series of tradeoffs made in the course of recording and reproducing that sound. In the meantime, the world changes. Better quality compression, new devices with more storage and processing power, and new ways of reproducing sound for specific environments are created and old recordings sound worse by comparison. *The representation stays the same, but expectations, constraints, and contexts change.*

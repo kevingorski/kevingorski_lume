@@ -3,6 +3,7 @@ title: Blocked
 description: Feeling blocked and what to do next
 date: 2013-07-27T17:00:00.000Z
 tags:
+  - Creativity
 ---
 
 The stress from working full bore toward an achievable goal has a very specific feeling to it. It can burn and it can leave you tired, but because it's cut with the relief or satisfaction of appreciable progress and the potential for growth it's not entirely draining. With time to rest, you can remain motivated and possibly even happy that you're returning to this state. Depending on your feelings on exercise, this can be like going for a run or lifting weights.

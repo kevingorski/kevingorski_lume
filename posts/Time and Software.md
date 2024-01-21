@@ -3,6 +3,7 @@ title: Time and Software
 description: It's just time, right?
 date: 2014-05-10T17:00:00.000Z
 tags:
+  - Building Software
 ---
 There are few things more frustrating in building and using software than an awkward and error-prone system. No such system is as commonly encountered as time. [I&rsquo;m not the first person to point this out](http://msmvps.com/blogs/jon_skeet/archive/2009/11/02/omg-ponies-aka-humanity-epic-fail.aspx), but I&rsquo;d like to contribute a series of questions that might help to explain how your system is mistreating time. Not all systems will require paying attention to all of these details, but knowing what tradeoffs you are willing to make is at the heart of engineering and design.
 
