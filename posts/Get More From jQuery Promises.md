@@ -20,7 +20,10 @@ A *promise* represents the result of a single execution of a task that will comp
 ## Promises From jQuery
 Since promises were introduced as part of the <abbr title="Asynchronous JavaScript and XML">AJAX</abbr> re-write the go-to example is the [`$.ajax`][18] family of methods which now return promises in addition to the original <abbr title="Application Programming Interface">API</abbr> of accepting success and failure methods in the configuration object:
 
-<figure class="codelisting"><pre><code lang="javascript" class="javascript">// Original API
+<figure class="codelisting">
+
+```javascript
+// Original API
 $.ajax({
   url: 'http://example.com/fakeapi',
   success: function(data, textStatus, jqXHR) {},
@@ -39,7 +42,10 @@ $.ajax({ url:'http://example.com/fakeapi' })
   .always(function() {
     // complete
     // arguments will mirror success or error as called
-  });</code></pre><figcaption>Comparing the AJAX APIs</figcaption></figure>
+  });
+```
+
+<figcaption>Comparing the AJAX APIs</figcaption></figure>
 
 It looks a little cleaner, but what more can we do with a promise object?
 
@@ -48,7 +54,9 @@ It looks a little cleaner, but what more can we do with a promise object?
 If a promise method like [`then`][17] returns another promise, so you can chain successive calls to form a descriptive timeline of tasks:
 
 <figure class="codelisting">
-  <pre><code lang="javascript" class="javascript">// Promise to get weather
+
+```javascript
+// Promise to get weather
 $.getJSON('http://weather.com/forecast/80001')
   .then(function() {
     // Get the text description of the forecast
@@ -61,7 +69,9 @@ $.getJSON('http://weather.com/forecast/80001')
     var photos = data.photos;
 
     // Display the photos
-  });</code></pre>
+  });
+```
+
   <figcaption>Chaining promises for easy-to-read async code</figcaption>
 </figure>
 
@@ -74,24 +84,32 @@ In any case, using `then` is much cleaner than it would have been with configura
 What if we have multiple task-based dependencies, but they don&rsquo;t depend on each other?
 
 <figure class="codelisting">
-  <pre><code lang="javascript" class="javascript">// Parameter list of promises
+
+```javascript
+// Parameter list of promises
 $.when($.get('google'), $.get('bing'))
   // All finished, results in same order
   .then(function(googleData, bingData) {
     // Now compare results
-  });</code></pre>
+  });
+```
+
   <figcaption>Combining multiple promises into an aggregate</figcaption>
 </figure>
 
 Now we&rsquo;re getting somewhere! Coordination of multiple asynchronous tasks would otherwise be difficult to write, difficult to read and difficult to debug, but by using promises everything is clear and concise.
 
 
-### Say &ldquo;When?&rdquo;
+### Say "When?"
 
 At some point you will want to conditionally include promises in the parameter list to [`when`][19]. One way to do this is to add promises to an array and then use [`function.apply`][7] to match the method signature:
 
 <figure class="codelisting">
-  <pre><code lang="javascript" class="javascript">$.when.apply($, arrayOfPromises);</code></pre>
+
+```javascript
+  $.when.apply($, arrayOfPromises);
+```
+
   <figcaption>Applying `when` to an arbitrary number of promises</figcaption>
 </figure>
 
@@ -106,7 +124,9 @@ The first problem can be mitigated by writing a function that does this directly
 When you pass an object that isn&rsquo;t a promise to `when` (determined by the existence of a `promise` function on the object) it&rsquo;s interpreted as being an immediate result that will be passed through to `then` just like a successful promise result. By taking advantage of this behavior we can maintain clarity and avoid adding another method to the <abbr title="Application Programming Interface">API</abbr>:
 
 <figure class="codelisting">
-  <pre><code lang="javascript" class="javascript">function getTemplate(premiumAccount) {
+
+```javascript
+function getTemplate(premiumAccount) {
   if(!premiumAccount)
     return 'free template';
 
@@ -121,7 +141,9 @@ function uploadResume(resumeFile, premiumAccount) {
         // Ready to display
         return renderTemplate(template, resumeMediaKey);
       });
-}</code></pre>
+}
+```
+
   <figcaption>Combining promises and plain objects</figcaption>
 </figure>
 
@@ -140,7 +162,9 @@ Once we&rsquo;ve created our deferred object, there are three methods that you&r
 Here they are in a quick example:
 
 <figure class="codelisting">
-  <pre><code lang="javascript" class="javascript">function upload(fileName) {
+
+```javascript
+function upload(fileName) {
   var uploading = $.Deferred();
 
   // Imaginary file upload API
@@ -155,7 +179,9 @@ Here they are in a quick example:
   });
 
   return uploading.promise();
-}</code></pre>
+}
+```
+
   <figcaption>Using resolve, reject, and promise</figcaption>
 </figure>
 
@@ -164,7 +190,9 @@ If you want even more control over how the success or failure methods are called
 There&rsquo;s one more feature of jQuery&rsquo;s promises that seems useful, but I haven&rsquo;t seen used much: progress notifications. Deferred objects have a [`notify`][13] method (and [`notifyWith`][14] as above) that will send data to [`progress`][15] handlers.
 
 <figure class="codelisting">
-  <pre><code lang="javascript" class="javascript">// Task-based code with deferred object "fileUploading"
+
+```javascript
+// Task-based code with deferred object "fileUploading"
 file.updating(function(bytesReceived) {
   uploading.notify(bytesReceived);
 });
@@ -173,7 +201,9 @@ file.updating(function(bytesReceived) {
 uploadFile(fileToUpload)
   .progress(function(bytesReceived) {
     console.log(bytesReceived + ' B / ' + file.totalBytes + ' B');
-  });</code></pre>
+  });
+```
+
   <figcaption>Notification via promises</figcaption>
 </figure>
 
@@ -182,7 +212,9 @@ Now let&rsquo;s put everything together:
 <iframe src="http://bl.ocks.org/d/4415942/" width="100%" height="225"></iframe>
 
 <figure class="codelisting">
-<pre><code lang="javascript" class="javascript">// Imaginary file upload API
+
+```javascript
+// Imaginary file upload API
 var file = {
   totalBytes: 300,
   upload: function(fileName) {
@@ -239,7 +271,9 @@ $(function() {
           $uploadButton.removeAttr('disabled');
         });
   });
-});</code></pre>
+});
+```
+
   <figcaption>File uploading example</figcaption>
 </figure>
 
