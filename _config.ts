@@ -8,6 +8,7 @@ import resolveUrls from "lume/plugins/resolve_urls.ts";
 import pageFind from "lume/plugins/pagefind.ts";
 import sitemap from "lume/plugins/sitemap.ts";
 import feed from "lume/plugins/feed.ts";
+import inline from "lume/plugins/inline.ts";
 import toc from "lume_markdown_plugins/toc.ts";
 
 const markdown = {
@@ -26,6 +27,9 @@ site
   .ignore("README.md")
   .copy("img", ".")
   .use(postcss())
+  .use(inline({
+    copyAttributes: ["alt", "title", /^data-/],
+  }))
   .use(date())
   .use(codeHighlight())
   .use(toc({
