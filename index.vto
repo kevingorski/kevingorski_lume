@@ -3,6 +3,7 @@ layout: layouts/home.vto
 menu:
   title: Home
   order: 0
+title: Home - Kevin Gorski
 ---
 
 <h1>{{ site.description }}</h1>
@@ -15,7 +16,7 @@ menu:
 
 <hr>
 
-{{ set postslist  = search.pages("pinned=true") }}
+{{ set postslist = search.pages("pinned=true") }}
 
 {{ if postslist.length }}
   <h3>Pinned Post:</h3>

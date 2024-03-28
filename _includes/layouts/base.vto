@@ -1,16 +1,12 @@
----
-description: 
-title: 
----
 <!doctype html>
 
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title || site.title }}</title>
-    <meta name="description" content="{{ description || site.description }}">
+    <title>{{ title ?? site.title }}</title>
     <link rel="stylesheet" href="/styles.css">
+    <link rel="manifest" href="/manifest.webmanifest">
     <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="{{ site.title }}">
     <link rel="alternate" href="/feed.json" type="application/json" title="{{ site.title }}">
   </head>
