@@ -11,14 +11,20 @@
     "proseWrap": "preserve"
   },
   "imports": {
-    "lume/": "https://deno.land/x/lume@v2.1.2/",
-    "lume_markdown_plugins/": "https://deno.land/x/lume_markdown_plugins@v0.7.0/"
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@v3.2.4/",
+    "lume_markdown_plugins/": "https://deno.land/x/lume_markdown_plugins@v0.12.0/"
   },
-  "lock": false,
-  "pkgx": "deno.land^1.42.0",
+  "unstable": ["temporal"],
   "tasks": {
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
     "build": "deno task lume",
     "serve": "deno task lume -s"
+  },
+  "deploy": {
+    "build": "deno task build",
+    "runtime": {
+      "type": "dynamic",
+      "entrypoint": "server.ts"
+    }
   }
 }
