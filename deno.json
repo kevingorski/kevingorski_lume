@@ -21,9 +21,10 @@
     "serve": "deno task lume -s"
   },
   "deploy": {
-    "project": "kevingorski-lume",
-    "entrypoint": "server.ts",
-    "include": ["server.ts", "_site/**"],
-    "build": "deno task build"
+    "build": "deno task build",
+    "runtime": {
+      "type": "dynamic",
+      "entrypoint": "server.ts"
+    }
   }
 }
