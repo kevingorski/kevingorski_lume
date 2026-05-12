@@ -28,28 +28,32 @@ const site = lume({
 site
   .ignore("README.md")
   .copy("img", ".")
+  .copy("manifest.webmanifest")
+  .add("styles.css")
   // Based off of favicon.svg
-  .use(favicon({ favicons: [
-    { url: "/favicon.ico", size: [32], rel: "icon", format: "ico" },
-    {
-      url: "/apple-touch-icon.png",
-      size: [ 180 ],
-      rel: "apple-touch-icon",
-      format: "png"
-    },
-    {
-      url: "/icon-192.png",
-      size: [ 192 ],
-      rel: "manifest-icon",
-      format: "png"
-    },
-    {
-      url: "/icon-512.png",
-      size: [ 512 ],
-      rel: "manifest-icon",
-      format: "png"
-    },
-  ] }))
+  .use(favicon({
+    favicons: [
+      { url: "/favicon.ico", size: [32], rel: "icon", format: "ico" },
+      {
+        url: "/apple-touch-icon.png",
+        size: [180],
+        rel: "apple-touch-icon",
+        format: "png",
+      },
+      {
+        url: "/icon-192.png",
+        size: [192],
+        rel: "manifest-icon",
+        format: "png",
+      },
+      {
+        url: "/icon-512.png",
+        size: [512],
+        rel: "manifest-icon",
+        format: "png",
+      },
+    ],
+  }))
   .use(postcss())
   .use(inline({
     copyAttributes: ["alt", "title", /^data-/],
@@ -84,7 +88,7 @@ site
       updated: "=date",
     },
   }))
-  .use(resolveUrls())
+  .use(resolveUrls());
 
 site.process([".html"], (pages) => {
   for (const page of pages) {
@@ -93,6 +97,5 @@ site.process([".html"], (pages) => {
     });
   }
 });
-  
-export default site;
 
+export default site;
